@@ -19,6 +19,9 @@ public:
     size_t Capacity();
 
     void Add(const Type& value);
+    void Remove(size_t index);
+private:
+    void AddMemory();;
 public:
     template<typename DefType>
     friend std::ostream &operator<<(std::ostream &stream, const Vector& vector);
@@ -29,9 +32,22 @@ public:
     const Type& operator[](size_t index) const {
         return m_Array[index];
     }
-private:
-    void AddMemory();
+public:
+    Type* begin() {
+        return &m_Array[0];
+    }
 
+    const Type* begin() const {
+        return &m_Array[0];
+    }
+
+    Type* end() {
+        return &m_Array[m_Size];
+    }
+
+    const Type* end() const {
+        return &m_Array[m_Size];
+    }
 };
 template<typename Type>
 Vector<Type>::Vector()
@@ -79,7 +95,14 @@ void Vector<Type>::Add(const Type& value)
     m_Array[m_Size] = value;
     m_Size++;
 }
-
+template<typename Type>
+void Vector<Type>::Remove(size_t index)
+{
+    for (auto i = index + 1; i < m_Size - 1; ++i) {
+        m_Array[i - 1] = m_Array[i];
+    }
+    --m_Size;
+}
 template<typename Type>
 std::ostream &operator<<(std::ostream& os, const Vector<Type>& vector)
 {
