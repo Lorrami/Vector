@@ -47,7 +47,8 @@ size_t Vector<Type>::Size()
     return m_Size;
 }
 template<typename Type>
-size_t Vector<Type>::Capacity() {
+size_t Vector<Type>::Capacity()
+{
     return m_MaxSize;
 }
 
@@ -57,7 +58,7 @@ void Vector<Type>::AddMemory()
     m_MaxSize *= 2;
     Type* tmp = m_Array;
     m_Array = new Type[m_MaxSize];
-    for (auto i = 0; i < m_Size; i++)
+    for (auto i = 0; i < m_Size; ++i)
         m_Array[i] = tmp[i];
     delete[] tmp;
 }
@@ -67,8 +68,8 @@ void Vector<Type>::Add(const Type& value)
 {
     if (m_Size >= m_MaxSize)
         AddMemory();
-    m_Size++;
     m_Array[m_Size] = value;
+    m_Size++;
 }
 
 template<typename Type>
