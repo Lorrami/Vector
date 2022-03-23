@@ -17,4 +17,17 @@ int main()
 
     for (auto it : list)
         std::cout << it << std::endl;
+
+    Vector<std::string> stringList;
+    stringList.Add("Gray");
+    stringList.Add("Red");
+    stringList.Add("Blue");
+    stringList.Add("Green");
+    stringList.Add("Yellow");
+    stringList.Add("Black");
+
+    //list.Remove(6);
+
+    for (auto it : stringList)
+        std::cout << it << std::endl;
 }
