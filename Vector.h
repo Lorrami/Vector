@@ -22,8 +22,16 @@ public:
 public:
     template<typename DefType>
     friend std::ostream &operator<<(std::ostream &stream, const Vector& vector);
+public:
+    Type& operator[](size_t index)  {
+        return m_Array[index];
+    }
+    const Type& operator[](size_t index) const {
+        return m_Array[index];
+    }
 private:
     void AddMemory();
+
 };
 template<typename Type>
 Vector<Type>::Vector()
