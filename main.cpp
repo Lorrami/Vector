@@ -1,7 +1,13 @@
+#include "Vector.h"
+
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    Vector<int> list;
+    list.Add(12);
+    list.Add(13);
+    list.Add(14);
+
+    std::cout << list;
 }
