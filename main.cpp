@@ -29,7 +29,7 @@ int main()
         std::cout << it << std::endl;
 
     Vector<int> testList = intList;
-    //testList.Add(345);
+    testList.Add(345);
     for (auto it : testList)
         std::cout << it << std::endl;
 
