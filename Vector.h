@@ -46,11 +46,10 @@ public:
         return &m_Array[m_Size];
     }
     Vector &operator = (const Vector &other) {
-        if (other.m_Size > 0) {
-            m_Array = new Type[m_MaxSize];
-            for (auto it : other) {
-                Add(it);
-            }
+        m_Array = new Type[m_MaxSize];
+
+        for (auto it : other) {
+            Add(it);
         }
         return *this;
     }
@@ -61,7 +60,7 @@ Vector<Type>::Vector() {
     m_Array = new Type[m_MaxSize];
 }
 template <typename Type>
-Vector<Type>::Vector(const Vector &other) : m_MaxSize(other.m_MaxSize) {
+Vector<Type>::Vector(const Vector &other) : m_MaxSize(other.m_MaxSize), m_Array(other.m_Array) {
     *this = other;
 }
 template <typename Type>

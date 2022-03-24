@@ -11,14 +11,14 @@ int main()
     intList.Add(15);
     intList.Add(16);
     intList.Add(17);
-    intList.Remove(2);
+    //intList.Remove(2);
     for (auto it : intList)
         std::cout << it << std::endl;
 
 
     Vector<int> testIntList;
-    intList.Add(19);
-    intList.Add(20);
+    testIntList.Add(19);
+    testIntList.Add(20);
 
 
 
