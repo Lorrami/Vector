@@ -7,7 +7,7 @@ struct Vector {
 private:
     size_t m_MaxSize{};
 public:
-    Type* m_Array = nullptr;
+    Type *m_Array = nullptr;
     size_t m_Size{};
 
     Vector();
@@ -26,10 +26,10 @@ public:
     template<typename DefType>
     friend std::ostream &operator<<(std::ostream &stream, const Vector& vector);
 public:
-    Type& operator[](size_t index)  {
+    Type &operator[](size_t index)  {
         return m_Array[index];
     }
-    const Type& operator[](size_t index) const {
+    const Type &operator[](size_t index) const {
         return m_Array[index];
     }
 public:
@@ -39,11 +39,20 @@ public:
     const Type* begin() const {
         return &m_Array[0];
     }
-    Type* end() {
+    Type *end() {
         return &m_Array[m_Size];
     }
-    const Type* end() const {
+    const Type *end() const {
         return &m_Array[m_Size];
+    }
+    Vector &operator = (const Vector &other) {
+        if (other.m_Size > 0) {
+            m_Array = new Type[m_MaxSize];
+            for (auto it : other) {
+                Add(it);
+            }
+        }
+        return *this;
     }
 };
 template<typename Type>
@@ -53,10 +62,7 @@ Vector<Type>::Vector() {
 }
 template <typename Type>
 Vector<Type>::Vector(const Vector &other) : m_MaxSize(other.m_MaxSize) {
-    m_Array = new Type[m_MaxSize];
-    for (auto it : other) {
-        Add(it);
-    }
+    *this = other;
 }
 template <typename Type>
 Vector<Type>::~Vector() {
@@ -77,7 +83,7 @@ size_t Vector<Type>::Capacity() {
 template<typename Type>
 void Vector<Type>::AddMemory() {
     m_MaxSize *= 2;
-    Type* tmp = m_Array;
+    Type *tmp = m_Array;
     m_Array = new Type[m_MaxSize];
     for (auto i = 0; i < m_Size; ++i)
         m_Array[i] = tmp[i];
@@ -98,7 +104,7 @@ void Vector<Type>::Remove(size_t index) {
     --m_Size;
 }
 template<typename Type>
-std::ostream &operator<<(std::ostream& os, const Vector<Type>& vector) {
+std::ostream &operator<<(std::ostream &os, const Vector<Type> &vector) {
     for (auto i = 1; i < vector.m_Size; i++) {
         os << vector.m_Array[i] << std::endl;
     }
