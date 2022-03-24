@@ -47,7 +47,8 @@ public:
     }
     Vector &operator = (const Vector &other) {
         m_Array = new Type[m_MaxSize];
-
+        if (m_Array > 0)
+            m_Size = 0;
         for (auto it : other) {
             Add(it);
         }
